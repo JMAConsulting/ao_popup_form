@@ -25,7 +25,7 @@
      */
     public function build() {
 
-      $form = \Drupal::formBuilder()->getForm('Drupal\disclaimer\Form\DisclaimerForm');
+      $form = \Drupal::formBuilder()->getForm('Drupal\ao_popup_form\Form\DisclaimerForm');
 
       return $form;
     }
