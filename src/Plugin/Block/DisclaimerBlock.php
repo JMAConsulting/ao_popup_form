@@ -1,10 +1,10 @@
 <?php
   /**
    * @file
-   * Contains \Drupal\ao_popup_form\Plugin\Block\DisclaimerBlock.
+   * Contains \Drupal\disclaimer\Plugin\Block\DisclaimerBlock.
    */
 
-  namespace Drupal\ao_popup_form\Plugin\Block;
+  namespace Drupal\disclaimer\Plugin\Block;
 
   use Drupal\Core\Block\BlockBase;
   use Drupal\Core\Form\FormInterface;
@@ -25,7 +25,7 @@
      */
     public function build() {
 
-      $form = \Drupal::formBuilder()->getForm('Drupal\ao_popup_form\Form\DisclaimerForm');
+      $form = \Drupal::formBuilder()->getForm('Drupal\disclaimer\Form\DisclaimerForm');
 
       return $form;
     }

@@ -8,7 +8,7 @@
   use Drupal\Core\Form\FormBase;
   use Drupal\Core\Form\FormStateInterface;
 
-  class disclaimer extends FormBase {
+  class disclaimerForm extends FormBase {
     /**
      * {@inheritdoc}
      */
