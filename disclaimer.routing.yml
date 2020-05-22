@@ -3,5 +3,3 @@ disclaimer.form:
   defaults:
     _form: '\Drupal\disclaimer\Form\DisclaimerForm'
     _title: 'Disclaimer'
-  requirements:
-    _permission: 'access content'

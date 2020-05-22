@@ -60,14 +60,16 @@
      ",
       ];
 
+      $form['actions']['#type'] = 'actions';
       $form['actions']['clear'] = [
         '#type' => 'button',
         '#value' => t('Close'),
-        '#attributes' => [
-          'onclick' => 'return false;',
-          'class' => 'spb_close',
+        '#attached' => [
+          'library' => [
+            'disclaimer/disclaimer',
+          ],
         ],
-      ];
+      ]; 
       return $form;
     }
 

@@ -1,0 +1,7 @@
+disclaimer:
+  version: 1.x
+  js:
+    js/disclaimer.js: {}
+  css:
+    theme:
+      css/disclaimer.css: {}
