@@ -1,10 +1,10 @@
 <?php
   /**
    * @file
-   * Contains \Drupal\disclaimer\Plugin\Block\DisclaimerBlock.
+   * Contains \Drupal\ao_popup_form\Plugin\Block\DisclaimerBlock.
    */
 
-  namespace Drupal\disclaimer\Plugin\Block;
+  namespace Drupal\ao_popup_form\Plugin\Block;
 
   use Drupal\Core\Block\BlockBase;
   use Drupal\Core\Form\FormInterface;
