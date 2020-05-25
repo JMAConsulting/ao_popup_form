@@ -7,6 +7,11 @@
 
   use Drupal\Core\Form\FormBase;
   use Drupal\Core\Form\FormStateInterface;
+  use Drupal\disclaimer\HideModalCommand;
+  use Drupal\Core\Controller\ControllerBase;
+  use Drupal\Core\Ajax\AjaxResponse;
+  use Drupal\Core\Ajax\ReplaceCommand;
+
 
   class disclaimerForm extends FormBase {
     /**
@@ -41,6 +46,8 @@
 <p>";
         $acknowledgement = "I acknowledge that I have read Autism Ontario’s disclaimers and limitations of liability.";
       }
+      $form['#prefix'] = '<div id="disclaimer_form">';
+      $form['#suffix'] = '</div>';
 
       $form['help'] = [
         '#type' => 'markup',
@@ -62,14 +69,19 @@
 
       $form['actions']['#type'] = 'actions';
       $form['actions']['clear'] = [
-        '#type' => 'button',
+        '#type' => 'submit',
         '#value' => t('Close'),
-        '#attached' => [
-          'library' => [
-            'disclaimer/disclaimer',
-          ],
+        '#attributes' => [
+          'class' => ['use-ajax'],
         ],
-      ]; 
+        '#ajax'  => [
+          'callback' => [$this, 'submitModalFormAjax'],
+          'event' => 'click',
+        ],
+      ];
+      $form['#attached']['library'][] = 'core/drupal.dialog.ajax';
+      $form['#attached']['library'][] = 'disclaimer/disclaimer';
+
       return $form;
     }
 
@@ -80,4 +92,27 @@
 
 
     }
+
+  /**
+   * AJAX callback handler that displays any errors or a success message.
+   */
+  public function submitModalFormAjax(array $form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+
+    // If there are any form errors, re-display the form.
+    if ($form_state->hasAnyErrors()) {
+      $form['status_messages'] = [
+        '#type' => 'status_messages',
+        '#weight' => -1000,
+      ];
+      $response->addCommand(new ReplaceCommand('#disclaimer-form', $form));
+    }
+    else {
+      //Close the modal.
+      $command = new HideModalCommand('.block-disclaimerblock-modal', TRUE);
+      $response->addCommand($command);
+    }
+    return $response;
   }
+
+}
